@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR Team - iOS & FRP Unlocking</title>
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#232224;--bg2:#1a191c;--bg3:#2d2b2e;--cream:#faeade;--gold:#e3a458;--gold-dark:#a26833;--brown:#523122;--t:#fce1cd;--t2:#c4b5a6;--t3:#8a7a6a;--br:rgba(250,234,222,.08);--r:16px;--w:1160px;--f-display:'Antonio',sans-serif;--f-body:'Outfit',sans-serif}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--f-body);background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+    ::selection{background:var(--gold);color:var(--bg2)}
+    .w{max-width:var(--w);margin:0 auto;padding:0 24px}
+
+    #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .8s cubic-bezier(.77,0,.175,1)}
+    #loader.hidden{transform:translateY(-100%)}
+    .loader-img{width:56px;height:56px;border-radius:14px;margin-bottom:14px}
+    #loader h3{font-family:var(--f-display);font-size:22px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;color:var(--t)}
+    .loader-prog{width:200px;height:2px;background:var(--br);border-radius:2px;overflow:hidden}
+    .loader-prog-bar{height:100%;width:0;background:var(--gold);border-radius:2px}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;background:rgba(35,34,36,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--br)}
+    nav .w{display:flex;align-items:center;justify-content:space-between;width:100%}
+    .logo{display:flex;align-items:center;gap:10px;color:var(--t);text-decoration:none;font-size:14px;font-family:var(--f-display);text-transform:uppercase;letter-spacing:1px}
+    .logo img{height:26px;width:auto}
+    .nv{display:flex;align-items:center;gap:24px;list-style:none}
+    .nv a{color:var(--t2);text-decoration:none;font-size:13px;font-weight:500}
+    .nv a:hover{color:var(--t)}
+    .nv .cta{background:var(--gold);color:var(--bg2)!important;padding:6px 18px;border-radius:100px;font-size:12px;font-family:var(--f-display);text-transform:uppercase;letter-spacing:1px}
+    .hm{display:none;flex-direction:column;gap:4px;cursor:pointer;background:none;border:none;padding:4px}
+    .hm span{display:block;width:20px;height:2px;background:var(--t);border-radius:2px}
+
+    .hero-wrap{position:relative;overflow:hidden;min-height:100dvh;display:flex;align-items:center;background:var(--bg)}
+    .hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 25% 40%,rgba(227,164,88,.08) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 75% 60%,rgba(162,104,51,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 60% at 50% 100%,rgba(250,234,222,.03) 0%,transparent 50%)}
+    .hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(250,234,222,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(250,234,222,.02) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,black 30%,transparent 70%)}
+    .welcome-strip{text-align:center;padding:60px 0 10px;position:relative;z-index:2}
+    .welcome-svg{height:clamp(50px,7vw,90px);width:auto;max-width:90vw;display:inline-block}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
+    .hero-eyebrow{font-family:var(--f-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:16px}
+    .hero-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);vertical-align:middle;margin-right:8px}
+    .hero-title{font-family:var(--f-display);font-size:clamp(42px,5.5vw,72px);font-weight:800;line-height:1.05;letter-spacing:-1px;text-transform:uppercase;color:var(--t)}
+    .hero-acc{color:var(--gold)}
+    .hero-sub{font-family:var(--f-display);font-size:clamp(18px,1.5vw,24px);font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--t2);margin:10px 0 18px}
+    .hero-desc{font-size:14px;color:var(--t2);max-width:440px;line-height:1.7;margin-bottom:28px}
+    .hero-acts{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 28px;border-radius:100px;font-family:var(--f-display);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;border:none;cursor:pointer;transition:all .3s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-p{background:var(--gold);color:var(--bg2)}
+    .btn-p:hover{box-shadow:0 8px 32px rgba(227,164,88,.25)}
+    .btn-s{background:transparent;color:var(--t);border:1px solid var(--br)}
+    .btn-s:hover{border-color:rgba(250,234,222,.2);background:rgba(250,234,222,.04)}
+    .btn:active{transform:scale(.96)}
+
+    .hero-term{background:rgba(45,43,46,.6);border:1px solid rgba(250,234,222,.1);border-radius:var(--r);overflow:hidden;backdrop-filter:blur(12px)}
+    .term-h{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid rgba(250,234,222,.08)}
+    .term-d{width:8px;height:8px;border-radius:50%}
+    .term-d:nth-child(1){background:#ff5f56}
+    .term-d:nth-child(2){background:#ffbd2e}
+    .term-d:nth-child(3){background:#27c93f}
+    .term-b{padding:18px;font-size:13px;line-height:1.9;color:var(--t2)}
+    .term-ok{color:var(--gold)!important}
+
+    section{padding:100px 0}
+    .sec-t{font-family:var(--f-display);font-size:clamp(32px,3.5vw,48px);font-weight:800;text-transform:uppercase;letter-spacing:-.5px;line-height:1.1;margin-bottom:6px}
+    .sec-st{font-size:15px;color:var(--t2);margin-bottom:44px}
+    .s-cream{background:var(--cream)}
+    .s-cream .sec-t{color:var(--brown)}
+    .s-cream .sec-st{color:var(--gold-dark)}
+
+    .poster-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+    .poster-col{display:flex;flex-direction:column;gap:16px}
+    .poster-card{display:block;border-radius:var(--r);overflow:hidden;border:1px solid var(--br);background:var(--bg3);position:relative}
+    .s-cream .poster-card{border-color:rgba(82,49,34,.1);background:var(--cream)}
+    .poster-card:hover{transform:translateY(-6px);border-color:rgba(227,164,88,.3);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .poster-card img{width:100%;height:auto;display:block}
+    .poster-lbl{position:absolute;bottom:0;left:0;right:0;padding:20px 24px 16px;background:linear-gradient(transparent,rgba(26,25,28,.95));pointer-events:none}
+    .s-cream .poster-lbl{background:linear-gradient(transparent,rgba(250,234,222,.95))}
+    .s-cream .poster-lbl h3{color:var(--brown)}
+    .s-cream .poster-lbl p{color:var(--gold-dark)}
+    .poster-lbl h3{font-size:16px;font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+    .poster-lbl p{font-size:12px;color:var(--t3)}
+
+    .promo{padding:80px 0;text-align:center}
+    .promo h2{font-family:var(--f-display);font-size:clamp(32px,3vw,42px);font-weight:800;text-transform:uppercase;letter-spacing:-1px;margin-bottom:10px}
+    .promo p{font-size:15px;color:var(--t2);max-width:520px;margin:0 auto 28px}
+    .promo-rot{display:inline-block;transform:rotate(-2deg)}
+    .promo-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(227,164,88,.1);border:1px solid rgba(227,164,88,.2);padding:6px 16px;border-radius:100px;font-family:var(--f-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:20px}
+
+    .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .serv-item{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--br);border-radius:var(--r)}
+    .serv-item:hover{border-color:rgba(227,164,88,.15);background:var(--bg3)}
+    .serv-btn{width:100%;justify-content:center;padding:10px 16px;font-size:12px;gap:6px}
+    .serv-icon{width:18px;height:18px;flex-shrink:0}
+    .serv-icon img{width:100%;height:100%;display:block}
+    .serv-desc{font-size:12px;color:var(--t2);line-height:1.5;flex-grow:1}
+    @media(max-width:1024px){.serv-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.serv-grid{grid-template-columns:1fr}}
+
+    footer{padding:40px 0 24px;text-align:center;border-top:1px solid var(--br)}
+    footer p{font-size:13px;color:var(--t3)}
+    .foot-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px}
+    .foot-links a{color:var(--t2);text-decoration:none;font-size:13px}
+    .foot-links a:hover{color:var(--gold)}
+
+    @media(max-width:900px){
+      .nv{display:none}.hm{display:flex}
+      .nv.open{display:flex;position:fixed;top:60px;left:0;right:0;flex-direction:column;background:rgba(26,25,28,.98);padding:20px 24px;gap:14px;border-bottom:1px solid var(--br)}
+      .hero-inner{grid-template-columns:1fr;gap:32px}
+      .poster-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  <img src="logo.png" alt="BR Team" class="loader-img">
+  <h3>BR Team</h3>
+  <div class="loader-prog"><div class="loader-prog-bar" id="loaderBar"></div></div>
+</div>
+
+<nav id="nav">
+  <div class="w">
+    <a href="#" class="logo"><img src="logo.png" alt=""> BR Team</a>
+    <ul class="nv" id="nv">
+      <li><a href="https://t.me/Bookra1n" target="_blank">Telegram</a></li>
+      <li><a href="#feats">Services</a></li>
+    </ul>
+    <button class="hm" id="hm" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="w">
+    <div class="welcome-strip">
+      <img src="text.svg" alt="Welcome" class="welcome-svg" id="welcomeSvg">
+    </div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">BR Team Ecosystem</div>
+        <h1 class="hero-title" id="heroTitle">iOS &amp; FRP<br><span class="hero-acc">Unlocking Tools</span></h1>
+        <div class="hero-sub">Samsung Qualcomm FRP - 200+ Models</div>
+        <p class="hero-desc">Factory reset, FRP remove. iOS Hello bypass, MDM, FMI OFF &amp; more.</p>
+        <div class="hero-acts">
+          <a href="https://t.me/Bookra1n" target="_blank" class="btn btn-p">Join Telegram</a>
+          <a href="#dls" class="btn btn-s">Browse Downloads</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-term">
+          <div class="term-h"><span class="term-d"></span><span class="term-d"></span><span class="term-d"></span><span style="font-size:11px;color:var(--t3);margin-left:8px">upcoming tool</span></div>
+          <div class="term-b">
+            <div><span class="term-ok">[+]</span> Samsung Qualcomm</div>
+            <div><span class="term-ok">[+]</span> Samsung Exynos</div>
+            <div><span class="term-ok">[+]</span> Android 12 - 16</div>
+            <div style="margin-top:6px"><span class="term-ok">COMING SOON</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="dls" class="s-cream">
+  <div class="w">
+    <h2 class="sec-t"><span class="promo-rot">Downloads</span></h2>
+    <p class="sec-st">Latest releases from the BR Team ecosystem</p>
+    <div class="poster-grid">
+      <a href="https://bookra1n.com/Blue/aio" class="poster-card">
+        <img src="poster1.png" alt="BR Team AiO">
+        <div class="poster-lbl"><h3>BR Team AiO</h3><p>All-in-one iOS unlocking toolkit</p></div>
+      </a>
+      <div class="poster-col">
+        <a href="https://bookra1n.com/a12/updates/Bookra1n.zip" class="poster-card">
+          <img src="poster2.png" alt="Bookra1n A12+">
+          <div class="poster-lbl"><h3>Bookra1n A12+</h3><p>Untethered A5-A12+</p></div>
+        </a>
+        <a href="https://bookra1n.com/Blue/fmi" class="poster-card">
+          <img src="poster4.png" alt="FMI OFF">
+          <div class="poster-lbl"><h3>FMI OFF Portal</h3><p>iCloud unlock</p></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="promo">
+  <div class="w">
+    <div class="promo-badge">New Release</div>
+    <h2><span class="promo-rot">BR Team FRP</span></h2>
+    <p>Samsung Qualcomm FRP removal tool for 200+ models. Factory reset &amp; FRP remove.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--t2);font-weight:600;font-family:var(--f-display);letter-spacing:2px;text-transform:uppercase;padding:11px 0">Coming Soon</span>
+      <a href="https://t.me/Bookra1n" target="_blank" class="btn btn-p">Stay Updated</a>
+    </div>
+  </div>
+</div>
+
+<section id="feats">
+  <div class="w">
+    <h2 class="sec-t">Why <span class="hero-acc">BR Team</span></h2>
+    <p class="sec-st">Trusted by repair shops worldwide</p>
+    <div class="serv-grid">
+      <div class="serv-item">
+        <a href="https://bookra1n.com/panel" class="btn btn-p serv-btn" target="_blank"><img src="web.png" alt="" class="serv-icon"> Web Panel</a>
+        <div class="serv-desc">A centralized dashboard to manage serials, track clients, and monitor wallet balances and transactions.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://t.me/Bookra1n" class="btn btn-p serv-btn" target="_blank"><img src="tg.png" alt="" class="serv-icon"> Telegram Channel</a>
+        <div class="serv-desc">Telegram community for iOS unlocking solutions, updates, guidance, and discussions.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/Blue/aio/" class="btn btn-p serv-btn" target="_blank"><svg class="serv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg> BR Team AiO</a>
+        <div class="serv-desc">All-in-one iOS unlocking tool — Hello &amp; MDM bypass, ramdisk bypass, Purple Mode tools.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/a12/updates/Bookra1n.zip" class="btn btn-p serv-btn" target="_blank"><svg class="serv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg> Bookra1n A12+</a>
+        <div class="serv-desc">A5–A12+ untethered Hello activation with no jailbreak required.</div>
+      </div>
+      <div class="serv-item">
+        <a href="http://bookra1n.com/Blue/hidden/hidden.exe" class="btn btn-p serv-btn" target="_blank"><svg class="serv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg> Hidden iCloud</a>
+        <div class="serv-desc">Hide iCloud on Open Menu A12+ devices iOS 17–26.2 beta 2. No S/N registration needed.</div>
+      </div>
+      <div class="serv-item">
+        <a href="http://bookra1n.com/Blue/legacydownloads/checkm8.zip" class="btn btn-p serv-btn" target="_blank"><svg class="serv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg> Bookra1n CheckM8</a>
+        <div class="serv-desc">Basic CheckM8 Hello activator for A9–A11. Untethered + fully offline.</div>
+      </div>
+      <div class="serv-item">
+        <a href="http://bookra1n.com/Blue/legacydownloads" class="btn btn-p serv-btn" target="_blank"><svg class="serv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg> Legacy Downloads</a>
+        <div class="serv-desc">Old projects no longer maintained — useful for educational purposes.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/Blue/A12Ultra/patcherbot.php" class="btn btn-p serv-btn" target="_blank"><img src="web.png" alt="" class="serv-icon"> MobileGestalt Patcher</a>
+        <div class="serv-desc">Extract MobileGestalt for unsupported devices and get AiO support.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/Blue/fmi" class="btn btn-p serv-btn" target="_blank"><img src="web.png" alt="" class="serv-icon"> FMI OFF Portal</a>
+        <div class="serv-desc">Latest FMI OFF portal for all Open Menu iOS devices. iCloud Unlock.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/Blue/fmi2" class="btn btn-p serv-btn" target="_blank"><img src="web.png" alt="" class="serv-icon"> FMI OFF Portal 2</a>
+        <div class="serv-desc">Alternative FMI OFF portal for all Open Menu iOS devices.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/Blue/iOS12" class="btn btn-p serv-btn" target="_blank"><img src="web.png" alt="" class="serv-icon"> iOS 12 Re-Jailbreak</a>
+        <div class="serv-desc">Webkit iOS 12 A7–A10 re-jailbreak tool.</div>
+      </div>
+      <div class="serv-item">
+        <a href="https://bookra1n.com/Blue/otablock" class="btn btn-p serv-btn" target="_blank"><img src="web.png" alt="" class="serv-icon"> OTA Blocker</a>
+        <div class="serv-desc">Block iOS updates by installing a custom profile.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="promo" style="border-top:1px solid var(--br);padding-bottom:60px">
+  <div class="w">
+    <h2>Ready to <span class="hero-acc">Get Started</span>?</h2>
+    <p>Download the latest tools and join thousands of professionals worldwide.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <a href="https://bookra1n.com/Blue/aio" class="btn btn-p">Download BR Team AiO</a>
+      <a href="https://t.me/Bookra1n" target="_blank" class="btn btn-s">Join Telegram</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="w">
+    <div class="foot-links">
+      <a href="https://bookra1n.com">bookra1n.com</a>
+      <a href="https://t.me/Bookra1n">Telegram</a>
+      <a href="https://bookra1n.com/panel">Panel</a>
+    </div>
+    <p>&copy; 2026 BR Team. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+  // Hide loader fast
+  var loaderEl = document.getElementById('loader'), barEl = document.getElementById('loaderBar');
+  barEl.style.width = '80%';
+  setTimeout(function() { barEl.style.width = '100%'; }, 100);
+  setTimeout(function() { loaderEl.classList.add('hidden'); setTimeout(animateHero, 400); }, 500);
+
+  function animateHero() {
+    if (typeof gsap === 'undefined') return;
+    gsap.from('#nav', { y: -60, opacity: 0, duration: 0.5, ease: 'power3.out' });
+    gsap.fromTo('#welcomeSvg', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out', delay: 0.1 });
+    gsap.from('.hero-eyebrow', { x: -30, opacity: 0, duration: 0.5, ease: 'power3.out', delay: 0.3 });
+    var t = document.getElementById('heroTitle');
+    if (t) {
+      var w = document.createTreeWalker(t, NodeFilter.SHOW_TEXT, null, false), ns = [];
+      while (w.nextNode()) ns.push(w.currentNode);
+      ns.forEach(function(n) {
+        if (!n.textContent.trim()) { n.textContent = '\u00A0'; return; }
+        var f = document.createDocumentFragment();
+        n.textContent.split('').forEach(function(c) {
+          var s = document.createElement('span'); s.style.display = 'inline-block'; s.textContent = c === ' ' ? '\u00A0' : c; f.appendChild(s);
+        });
+        n.parentNode.replaceChild(f, n);
+      });
+      gsap.from(t.querySelectorAll('span'), { yPercent: 120, opacity: 0, stagger: 0.02, duration: 0.5, ease: 'power3.out', delay: 0.4 });
+    }
+    gsap.from('.hero-sub', { y: 20, opacity: 0, duration: 0.3, ease: 'power3.out', delay: 0.5 });
+    gsap.from('.hero-desc', { y: 20, opacity: 0, duration: 0.3, ease: 'power3.out', delay: 0.55 });
+    gsap.from('.hero-acts', { y: 20, opacity: 0, duration: 0.3, ease: 'power3.out', delay: 0.6 });
+    gsap.from('.hero-term', { x: 40, opacity: 0, duration: 0.5, ease: 'power3.out', delay: 0.4 });
+    gsap.to('.hero-glow', { opacity: 1, duration: 1, ease: 'power2.out' });
+    gsap.to('.hero-grid', { opacity: 1, duration: 1.2, ease: 'power2.out' });
+  }
+
+  document.getElementById('hm').addEventListener('click', function() { document.getElementById('nv').classList.toggle('open'); });
+</script>
+</body>
+</html>
