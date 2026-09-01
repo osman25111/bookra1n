@@ -11,7 +11,7 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:reset": "prisma migrate reset",
-    "build:pages": "BUILD_TARGET=pages next build"
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/bookra1n BUILD_TARGET=pages next build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

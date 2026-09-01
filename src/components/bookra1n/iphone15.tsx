@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { asset } from "./asset";
 
 /**
  * iPhone 15 Pro Max — Hello mode (iOS activation screen).
@@ -41,14 +41,13 @@ export default function Iphone15() {
             </span>
           </div>
           <div className="hello-wrap">
-            <Image
-              src="/hello.svg"
+            { }
+            <img
+              src={asset("/hello.svg")}
               alt="hello"
               width={300}
               height={169}
-              priority
               fetchPriority="high"
-              unoptimized
             />
           </div>
           <div className="swipe" aria-hidden="true">

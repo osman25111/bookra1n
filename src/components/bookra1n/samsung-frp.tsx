@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { asset } from "./asset";
 
 /**
  * Samsung Galaxy — startup setup wizard right after factory reset.
@@ -10,13 +10,13 @@ export default function SamsungFrp() {
     <div className="stage" style={{ alignItems: "center" }}>
       <div className="samsung">
         <div className="samsung-screen" role="img" aria-label="Samsung Galaxy showing the Google Verify your account FRP screen during startup setup after factory reset">
-          <Image
-            src="/frp-verify.webp"
+          { }
+          <img
+            src={asset("/frp-verify.webp")}
             alt="Google FRP — Verify your account screen after factory reset"
             width={294}
             height={584}
             loading="lazy"
-            unoptimized
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
           />
         </div>

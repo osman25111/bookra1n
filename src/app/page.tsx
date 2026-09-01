@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { asset } from "@/components/bookra1n/asset";
 import Nav from "@/components/bookra1n/nav";
 import Reveal from "@/components/bookra1n/reveal";
 import Counter from "@/components/bookra1n/counter";
@@ -125,14 +125,13 @@ export default function Home() {
           <div className="bwrap hero-in">
             <div>
               <div className="sig">
-                <Image
-                  src="/hello.svg"
+                { }
+                <img
+                  src={asset("/hello.svg")}
                   alt="Hello — handwritten BR Team signature"
                   width={350}
                   height={197}
-                  priority
                   fetchPriority="high"
-                  unoptimized
                   style={{ width: "min(300px, 62vw)", height: "auto" }}
                 />
               </div>
@@ -257,13 +256,14 @@ export default function Home() {
                   rel="noopener noreferrer"
                 >
                   <figure>
-                    <Image
-                      src="/poster1.webp"
+                    { }
+                    <img
+                      src={asset("/poster1.webp")}
                       alt="BR Team AiO poster"
                       width={1200}
                       height={581}
                       loading="lazy"
-                      unoptimized
+                      decoding="async"
                       style={{ width: "100%", height: "auto" }}
                     />
                     <span className="dl-tag">Flagship</span>
@@ -297,13 +297,14 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <figure>
-                      <Image
-                        src="/poster2.webp"
+                      { }
+                      <img
+                        src={asset("/poster2.webp")}
                         alt="Bookra1n A12+ poster"
                         width={1000}
                         height={484}
                         loading="lazy"
-                        unoptimized
+                        decoding="async"
                         style={{ width: "100%", height: "auto" }}
                       />
                       <span className="dl-tag">Untethered</span>
@@ -331,13 +332,14 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <figure>
-                      <Image
-                        src="/poster4.webp"
+                      { }
+                      <img
+                        src={asset("/poster4.webp")}
                         alt="FMI OFF portal poster"
                         width={1000}
                         height={483}
                         loading="lazy"
-                        unoptimized
+                        decoding="async"
                         style={{ width: "100%", height: "auto" }}
                       />
                       <span className="dl-tag">Portal</span>
