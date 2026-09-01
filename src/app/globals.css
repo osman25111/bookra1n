@@ -455,8 +455,10 @@
   align-items: center;
   padding-bottom: 56px;
 }
-.sig img {
+.sig .hello-sign {
   width: min(300px, 62vw);
+  height: auto;
+  overflow: visible;
   filter: drop-shadow(0 0 26px rgba(241, 197, 131, 0.25));
 }
 .eyebrow {
@@ -676,22 +678,37 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(241, 197, 131, 0.16), transparent 68%);
 }
-.hello-wrap img {
+.hello-wrap .hello-sign {
   width: 74%;
+  height: auto;
+  overflow: visible;
   position: relative;
 }
-/* hello fades in once, stays fully visible (replaces broken SMIL loop) */
-.hello-img {
-  animation: hello-in 1s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+/*
+ * The original self-writing hello — CSS version (never freezes like SMIL did):
+ * writes itself 0.2s→2.4s, stays fully visible ~2.6s, fades, rewrites. Loop 6s.
+ */
+.hello-stroke {
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+  animation: hello-write 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
-@keyframes hello-in {
-  from {
-    opacity: 0;
-    transform: scale(0.94);
-  }
-  to {
+@keyframes hello-write {
+  0%, 4% {
+    stroke-dashoffset: 100;
     opacity: 1;
-    transform: scale(1);
+  }
+  40%, 84% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  93%, 99% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+    opacity: 1;
   }
 }
 .swipe {
@@ -1532,8 +1549,11 @@
   .marq-track,
   .iphone-screen::after,
   .eyebrow .dot,
-  .hello-img {
+  .hello-stroke {
     animation: none !important;
+  }
+  .hello-stroke {
+    stroke-dashoffset: 0;
   }
   .rv {
     opacity: 1;

@@ -1,4 +1,4 @@
-import { asset } from "./asset";
+import HelloSignature from "./hello-signature";
 
 /**
  * iPhone 15 Pro Max — Hello mode (iOS activation screen).
@@ -41,15 +41,7 @@ export default function Iphone15() {
             </span>
           </div>
           <div className="hello-wrap">
-            { }
-            <img
-              src={asset("/hello.svg")}
-              alt="hello"
-              width={300}
-              height={148}
-              fetchPriority="high"
-              className="hello-img"
-            />
+            <HelloSignature />
           </div>
           <div className="swipe" aria-hidden="true">
             <span>swipe up to open</span>

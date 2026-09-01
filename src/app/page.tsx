@@ -1,5 +1,6 @@
 import { asset } from "@/components/bookra1n/asset";
 import Nav from "@/components/bookra1n/nav";
+import HelloSignature from "@/components/bookra1n/hello-signature";
 import Reveal from "@/components/bookra1n/reveal";
 import Counter from "@/components/bookra1n/counter";
 import Iphone15 from "@/components/bookra1n/iphone15";
@@ -125,16 +126,7 @@ export default function Home() {
           <div className="bwrap hero-in">
             <div>
               <div className="sig">
-                { }
-                <img
-                  src={asset("/hello.svg")}
-                  alt="Hello — handwritten BR Team signature"
-                  width={350}
-                  height={173}
-                  fetchPriority="high"
-                  className="hello-img"
-                  style={{ width: "min(300px, 62vw)", height: "auto" }}
-                />
+                <HelloSignature />
               </div>
               <p className="eyebrow">
                 <span className="dot" />
