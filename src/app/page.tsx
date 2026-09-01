@@ -1,6 +1,5 @@
 import { asset } from "@/components/bookra1n/asset";
 import Nav from "@/components/bookra1n/nav";
-import HelloSignature from "@/components/bookra1n/hello-signature";
 import Reveal from "@/components/bookra1n/reveal";
 import Counter from "@/components/bookra1n/counter";
 import Iphone15 from "@/components/bookra1n/iphone15";
@@ -22,6 +21,10 @@ import {
   IconLockDot,
   IconRefresh,
   IconShieldX,
+  IconRamdisk,
+  IconAndroid,
+  IconEraser,
+  IconBan,
 } from "@/components/bookra1n/icons";
 
 const MARQUEE = [
@@ -54,22 +57,46 @@ const TOOLS = [
     icon: <IconLayers />,
   },
   {
+    href: "https://bookra1n.com/Blue/a12a13erase/ramdisk.html",
+    title: "A12 — A13 Ramdisk",
+    desc: "Ramdisk PIN & Hello screen bypass for A12/A13 — no S/N change. Extracts owner info via PWNED DFU. Windows toolkit.",
+    icon: <IconRamdisk />,
+  },
+  {
     href: "https://bookra1n.com/a12/updates/Bookra1n.zip",
     title: "Bookra1n A12+",
     desc: "Untethered Hello activation for A5 — A12+. No jailbreak required.",
     icon: <IconChip />,
   },
   {
+    href: "http://bookra1n.com/Blue/android",
+    title: "Android AiO",
+    desc: "All-in-one Android FRP bypass for 500+ models (2015 — 2022). Samsung, Xiaomi, Huawei, Oppo, OnePlus, Vivo, Tecno & more.",
+    icon: <IconAndroid />,
+  },
+  {
+    href: "http://bookra1n.com/Blue/a12a13erase",
+    title: "A12 — A13 Passcode Eraser",
+    desc: "Erase any A12 — A13 device from passcode back to the Hello screen, then bypass / activate it. No S/N registration. Requires RP2350-USB-A.",
+    icon: <IconEraser />,
+  },
+  {
     href: "http://bookra1n.com/Blue/hidden/hidden.exe",
     title: "Hidden iCloud",
-    desc: "Hide iCloud on Open Menu A12+ devices, iOS 17 — 26.2 beta. No S/N registration.",
+    desc: "Hide iCloud on Open Menu A12+ devices, iOS 17 — 26.2 beta. No S/N registration. Deprecated — device re-locks after factory reset.",
     icon: <IconEyeOff />,
   },
   {
     href: "http://bookra1n.com/Blue/legacydownloads/checkm8.zip",
     title: "Bookra1n CheckM8",
-    desc: "Classic CheckM8 Hello activator for A9 — A11. Untethered & fully offline.",
+    desc: "Classic CheckM8 Hello activator for A9 — A11. Untethered & fully offline. Deprecated — the AiO has this built in.",
     icon: <IconTerminal />,
+  },
+  {
+    href: "http://bookra1n.com/Blue/fakereset",
+    title: "Block OTA + Fake Reset",
+    desc: "Permanently disable OTA updates and block factory reset. Extremely risky — only if you know what you are doing. Deprecated.",
+    icon: <IconBan />,
   },
   {
     href: "http://bookra1n.com/Blue/legacydownloads",
@@ -84,15 +111,15 @@ const TOOLS = [
     icon: <IconSliders />,
   },
   {
-    href: "https://bookra1n.com/Blue/fmi",
-    title: "FMI OFF Portal",
-    desc: "Flagship iCloud unlock portal for all Open Menu iOS devices.",
+    href: "https://bookra1n.com/Blue/fmi2026",
+    title: "FMI OFF 2026",
+    desc: "Latest FMI OFF portal for all Open Menu iOS 13 — 27 devices. Fully iCloud unlocked after the procedure.",
     icon: <IconLock />,
   },
   {
-    href: "https://bookra1n.com/Blue/fmi2",
-    title: "FMI OFF Portal 2",
-    desc: "Backup portal — same magic, second route.",
+    href: "https://bookra1n.com/Blue/fmi",
+    title: "FMI OFF 2025",
+    desc: "2025 FMI OFF portal for Open Menu iOS 13 — 26.1 devices. Success rate may vary on the newest iOS versions.",
     icon: <IconLockDot />,
   },
   {
@@ -125,9 +152,6 @@ export default function Home() {
           <div className="hero-glow" aria-hidden="true" />
           <div className="bwrap hero-in">
             <div>
-              <div className="sig">
-                <HelloSignature />
-              </div>
               <p className="eyebrow">
                 <span className="dot" />
                 Systems online — BR Team ecosystem

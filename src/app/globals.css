@@ -455,12 +455,6 @@
   align-items: center;
   padding-bottom: 56px;
 }
-.sig .hello-sign {
-  width: min(300px, 62vw);
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 0 26px rgba(241, 197, 131, 0.25));
-}
 .eyebrow {
   display: flex;
   align-items: center;

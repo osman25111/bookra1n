@@ -131,3 +131,44 @@ export function IconShieldX({ className }: { className?: string }) {
     </svg>
   );
 }
+
+export function IconRamdisk({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="8" width="18" height="8" rx="1.6" />
+      <path d="M7 8v8M11 8v8M15 8v8M19 8v8" />
+      <path d="M6 5h12M6 19h12" />
+    </svg>
+  );
+}
+
+export function IconAndroid({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4.5 15.5a7.5 7.5 0 0 1 15 0v.5h-15v-.5Z" />
+      <path d="m7 6.5 1.6 2.4M17 6.5l-1.6 2.4" />
+      <path d="M2 12.5h20" />
+      <circle cx="9" cy="12.7" r="0.4" fill="currentColor" />
+      <circle cx="15" cy="12.7" r="0.4" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function IconEraser({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m8.5 20 -4.2-4.2a1.8 1.8 0 0 1 0-2.6L13.7 3.8a1.8 1.8 0 0 1 2.6 0l3.9 3.9a1.8 1.8 0 0 1 0 2.6L11 19.5" />
+      <path d="M8.5 20H20" />
+      <path d="m9.5 7.5 7 7" />
+    </svg>
+  );
+}
+
+export function IconBan({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m5.7 5.7 12.6 12.6" />
+    </svg>
+  );
+}
