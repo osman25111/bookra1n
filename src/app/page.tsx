@@ -130,8 +130,9 @@ export default function Home() {
                   src={asset("/hello.svg")}
                   alt="Hello — handwritten BR Team signature"
                   width={350}
-                  height={197}
+                  height={173}
                   fetchPriority="high"
+                  className="hello-img"
                   style={{ width: "min(300px, 62vw)", height: "auto" }}
                 />
               </div>

@@ -46,8 +46,9 @@ export default function Iphone15() {
               src={asset("/hello.svg")}
               alt="hello"
               width={300}
-              height={169}
+              height={148}
               fetchPriority="high"
+              className="hello-img"
             />
           </div>
           <div className="swipe" aria-hidden="true">
