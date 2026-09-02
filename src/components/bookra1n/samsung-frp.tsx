@@ -2,18 +2,20 @@ import { asset } from "./asset";
 
 /**
  * Samsung Galaxy — startup setup wizard right after factory reset.
- * Real Google FRP "Verify your account" screen (from the sourced photo),
- * inside a One UI-style body with punch-hole camera.
+ * Real Google FRP "Verify your account" screen, inside a One UI body.
  */
 export default function SamsungFrp() {
   return (
     <div className="stage" style={{ alignItems: "center" }}>
       <div className="samsung">
-        <div className="samsung-screen" role="img" aria-label="Samsung Galaxy showing the Google Verify your account FRP screen during startup setup after factory reset">
-          { }
+        <div
+          className="samsung-screen"
+          role="img"
+          aria-label="Samsung Galaxy showing Google FRP Verify your account screen after factory reset"
+        >
           <img
             src={asset("/frp-verify.webp")}
-            alt="Google FRP — Verify your account screen after factory reset"
+            alt="Google FRP — Verify your account screen"
             width={294}
             height={584}
             loading="lazy"
@@ -39,7 +41,7 @@ export default function SamsungFrp() {
         </div>
       </div>
       <div className="sam-cap">
-        <b>Startup setup — right after factory reset</b>
+        <b>Startup setup — after factory reset</b>
         <span>Google FRP · Verify your account</span>
       </div>
     </div>

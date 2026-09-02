@@ -42,7 +42,7 @@ export default function Nav() {
       <header className={`nav${scrolled ? " is-scrolled" : ""}`}>
         <div className="bwrap nav-in">
           <a className="brand" href="#top" aria-label="Bookra1n — home">
-            <LogoMark size={26} />
+            <LogoMark size={24} />
             <b>
               BOOKRA<span className="g">1</span>N
             </b>
