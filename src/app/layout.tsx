@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0A08",
+  themeColor: "#080706",
   width: "device-width",
   initialScale: 1,
 };
@@ -42,6 +42,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="preload" as="image" href="/hero-bg.jpg" />
+        <link rel="preload" as="image" href="/noise.png" />
       </head>
       <body className="antialiased">{children}</body>
     </html>

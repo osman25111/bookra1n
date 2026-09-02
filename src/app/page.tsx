@@ -27,27 +27,17 @@ import {
   IconBan,
 } from "@/components/bookra1n/icons";
 
-const MARQUEE = [
-  "iOS Hello bypass",
-  "Samsung Qualcomm FRP",
-  "MDM bypass",
-  "FMI OFF portal",
-  "A5 — A12+ untethered",
-  "CheckM8 activator",
-  "OTA blocker",
-];
-
 const TOOLS = [
   {
     href: "https://bookra1n.com/panel",
     title: "Web Panel",
-    desc: "Central dashboard for serials, clients, wallet balances & transactions.",
+    desc: "Serial management, client accounts, wallet balances — your command center.",
     icon: <IconGlobe />,
   },
   {
     href: "https://t.me/Bookra1n",
     title: "Telegram Channel",
-    desc: "The community hub — releases, guides, support & live discussion.",
+    desc: "Releases, guides, support and discussion from the community.",
     icon: <IconTelegram />,
   },
   {
@@ -59,7 +49,7 @@ const TOOLS = [
   {
     href: "https://bookra1n.com/Blue/a12a13erase/ramdisk.html",
     title: "A12 — A13 Ramdisk",
-    desc: "Ramdisk PIN & Hello screen bypass for A12/A13 — no S/N change. Extracts owner info via PWNED DFU. Windows toolkit.",
+    desc: "Ramdisk PIN & Hello bypass for A12/A13. No S/N change. PWNED DFU extraction.",
     icon: <IconRamdisk />,
   },
   {
@@ -71,55 +61,55 @@ const TOOLS = [
   {
     href: "http://bookra1n.com/Blue/android",
     title: "Android AiO",
-    desc: "All-in-one Android FRP bypass for 500+ models (2015 — 2022). Samsung, Xiaomi, Huawei, Oppo, OnePlus, Vivo, Tecno & more.",
+    desc: "All-in-one Android FRP bypass — 500+ models, Samsung to Tecno.",
     icon: <IconAndroid />,
   },
   {
     href: "http://bookra1n.com/Blue/a12a13erase",
     title: "A12 — A13 Passcode Eraser",
-    desc: "Erase any A12 — A13 device from passcode back to the Hello screen, then bypass / activate it. No S/N registration. Requires RP2350-USB-A.",
+    desc: "Erase any A12 — A13 from passcode to Hello screen. Requires RP2350-USB-A.",
     icon: <IconEraser />,
   },
   {
     href: "http://bookra1n.com/Blue/hidden/hidden.exe",
     title: "Hidden iCloud",
-    desc: "Hide iCloud on Open Menu A12+ devices, iOS 17 — 26.2 beta. No S/N registration. Deprecated — device re-locks after factory reset.",
+    desc: "Hide iCloud on Open Menu A12+ devices, iOS 17 — 26.2 beta. Deprecated.",
     icon: <IconEyeOff />,
   },
   {
     href: "http://bookra1n.com/Blue/legacydownloads/checkm8.zip",
-    title: "Bookra1n CheckM8",
-    desc: "Classic CheckM8 Hello activator for A9 — A11. Untethered & fully offline. Deprecated — the AiO has this built in.",
+    title: "CheckM8 Activator",
+    desc: "Classic CheckM8 Hello activator for A9 — A11. Untethered & offline.",
     icon: <IconTerminal />,
   },
   {
     href: "http://bookra1n.com/Blue/fakereset",
     title: "Block OTA + Fake Reset",
-    desc: "Permanently disable OTA updates and block factory reset. Extremely risky — only if you know what you are doing. Deprecated.",
+    desc: "Permanently disable OTA updates and block factory reset. Deprecated.",
     icon: <IconBan />,
   },
   {
     href: "http://bookra1n.com/Blue/legacydownloads",
     title: "Legacy Downloads",
-    desc: "The archive — old projects, kept alive for education & research.",
+    desc: "Old projects, kept alive for education & research.",
     icon: <IconArchive />,
   },
   {
     href: "https://bookra1n.com/Blue/A12Ultra/patcherbot.php",
     title: "MobileGestalt Patcher",
-    desc: "Extract MobileGestalt for unsupported devices and unlock AiO support.",
+    desc: "Extract MobileGestalt for unsupported devices, unlock AiO support.",
     icon: <IconSliders />,
   },
   {
     href: "https://bookra1n.com/Blue/fmi2026",
     title: "FMI OFF 2026",
-    desc: "Latest FMI OFF portal for all Open Menu iOS 13 — 27 devices. Fully iCloud unlocked after the procedure.",
+    desc: "Latest FMI OFF portal for all Open Menu iOS 13 — 27 devices.",
     icon: <IconLock />,
   },
   {
     href: "https://bookra1n.com/Blue/fmi",
     title: "FMI OFF 2025",
-    desc: "2025 FMI OFF portal for Open Menu iOS 13 — 26.1 devices. Success rate may vary on the newest iOS versions.",
+    desc: "2025 FMI OFF portal for Open Menu iOS 13 — 26.1 devices.",
     icon: <IconLockDot />,
   },
   {
@@ -148,22 +138,19 @@ export default function Home() {
       <main id="main" style={{ flexGrow: 1 }}>
         {/* ================= HERO ================= */}
         <section className="hero">
-          <div className="hgrid" aria-hidden="true" />
-          <div className="hero-glow" aria-hidden="true" />
+          <div className="hero-bg" aria-hidden="true" />
+          <div className="hero-scans" aria-hidden="true" />
           <div className="bwrap hero-in">
             <div>
-              <p className="eyebrow">
-                <span className="dot" />
-                Systems online — BR Team ecosystem
-              </p>
+              <div className="hero-ver">v2.6 — 2026 build</div>
               <h1 className="h1">
-                <span>iOS &amp; FRP</span>
+                <span>iOS & FRP</span>
                 <span className="ol">Unlocking</span>
                 <span className="g">Tools</span>
               </h1>
               <p className="lede">
-                Samsung Qualcomm FRP for <b>200+ models</b>. iOS Hello bypass, MDM, FMI OFF — built
-                by the scene, for the scene.
+                Samsung Qualcomm FRP for <b>200+ models</b>. iOS Hello bypass, MDM, FMI OFF — 
+                built by repair techs who actually use this stuff daily.
               </p>
               <div className="acts">
                 <a
@@ -176,7 +163,7 @@ export default function Home() {
                   Join Telegram
                 </a>
                 <a className="btn btn-g" href="#dls">
-                  Browse downloads
+                  Browse tools
                 </a>
               </div>
               <ul className="hmeta">
@@ -194,24 +181,9 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-            <Reveal delay={150}>
+            <Reveal delay={100}>
               <Iphone15 />
             </Reveal>
-          </div>
-
-          <div className="marq" aria-hidden="true">
-            <div className="marq-track">
-              {[0, 1].map((g) => (
-                <div className="mq-g" key={g}>
-                  {MARQUEE.map((item) => (
-                    <span key={item}>
-                      {item}
-                      <i />
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -219,12 +191,12 @@ export default function Home() {
         <div className="stats">
           <div className="bwrap stats-in">
             {[
-              { n: 200, suffix: "+", label: "Samsung Qualcomm models" },
-              { n: 12, suffix: "", label: "Pro tools shipped" },
+              { n: 200, suffix: "+", label: "Samsung models" },
+              { n: 16, suffix: "", label: "Tools shipped" },
               { n: 100, suffix: "%", label: "Offline capable" },
               { n: 0, suffix: "", label: "Cloud dependency" },
             ].map((s, i) => (
-              <Reveal key={s.label} delay={i * 80}>
+              <Reveal key={s.label} delay={i * 60}>
                 <div className="stat">
                   <span className="stat-n">
                     <Counter to={s.n} />
@@ -242,14 +214,13 @@ export default function Home() {
           <div className="bwrap">
             <Reveal>
               <header className="sec-head">
-                <span className="sec-idx">01</span>
                 <div>
+                  <div className="sec-num">Core Downloads</div>
                   <h2 className="sec-t">
-                    Latest <span className="g">Drops</span>
+                    Flagship <span className="g">Releases</span>
                   </h2>
                   <p className="sec-s">
-                    Flagship releases from the BR Team lab — straight from the source, no mirrors,
-                    no rebuilds.
+                    The main builds — straight from the source. No mirrors, no rebuilds, no middlemen.
                   </p>
                 </div>
                 <a
@@ -273,7 +244,6 @@ export default function Home() {
                   rel="noopener noreferrer"
                 >
                   <figure>
-                    { }
                     <img
                       src={asset("/poster1.webp")}
                       alt="BR Team AiO poster"
@@ -289,13 +259,12 @@ export default function Home() {
                     <div>
                       <h3>BR Team AiO</h3>
                       <p>
-                        All-in-one iOS toolkit — Hello &amp; MDM bypass, ramdisk bypass, Purple Mode
-                        tools.
+                        The all-in-one iOS toolkit — Hello &amp; MDM bypass, ramdisk bypass, Purple Mode
+                        and everything in between.
                       </p>
                       <div className="dl-meta">
                         <span className="chip2">Windows</span>
-                        <span className="chip2">Hello bypass</span>
-                        <span className="chip2">MDM</span>
+                        <span className="chip2">All-in-one</span>
                       </div>
                     </div>
                     <span className="dl-go" aria-hidden="true">
@@ -304,7 +273,6 @@ export default function Home() {
                   </div>
                 </a>
               </Reveal>
-
               <div className="dl-col">
                 <Reveal delay={100}>
                   <a
@@ -314,17 +282,16 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <figure>
-                      { }
                       <img
                         src={asset("/poster2.webp")}
                         alt="Bookra1n A12+ poster"
                         width={1000}
-                        height={484}
+                        height={483}
                         loading="lazy"
                         decoding="async"
                         style={{ width: "100%", height: "auto" }}
                       />
-                      <span className="dl-tag">Untethered</span>
+                      <span className="dl-tag">A12+</span>
                     </figure>
                     <div className="dl-body">
                       <div>
@@ -341,7 +308,7 @@ export default function Home() {
                     </div>
                   </a>
                 </Reveal>
-                <Reveal delay={200}>
+                <Reveal delay={180}>
                   <a
                     className="dl-card"
                     href="https://bookra1n.com/Blue/fmi"
@@ -349,7 +316,6 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <figure>
-                      { }
                       <img
                         src={asset("/poster4.webp")}
                         alt="FMI OFF portal poster"
@@ -386,11 +352,8 @@ export default function Home() {
           <div className="bwrap frp-grid">
             <Reveal>
               <div>
-                <span className="chip">
-                  <i />
-                  In development
-                </span>
-                <h2 className="sec-t" style={{ marginTop: 18 }}>
+                <span className="frp-label">In development</span>
+                <h2 className="sec-t" style={{ marginTop: 16 }}>
                   BR TEAM <span className="hl">FRP</span>
                 </h2>
                 <p className="frp-p">
@@ -445,14 +408,13 @@ export default function Home() {
           <div className="bwrap">
             <Reveal>
               <header className="sec-head">
-                <span className="sec-idx">02</span>
                 <div>
+                  <div className="sec-num">Full Toolkit</div>
                   <h2 className="sec-t">
-                    The <span className="g">Arsenal</span>
+                    Everything <span className="g">We Build</span>
                   </h2>
                   <p className="sec-s">
-                    Every tool in the BR Team ecosystem. Hand-built, battle-tested, updated when it
-                    matters.
+                    Every tool in the BR Team ecosystem. Battle-tested, updated when it matters.
                   </p>
                 </div>
                 <a
@@ -466,23 +428,21 @@ export default function Home() {
                 </a>
               </header>
             </Reveal>
-            <div className="tools-grid">
+            <div className="tools-list">
               {TOOLS.map((t, i) => (
-                <Reveal key={t.title} delay={(i % 3) * 60}>
-                  <a className="tool" href={t.href} target="_blank" rel="noopener noreferrer">
+                <Reveal key={t.title} delay={(i % 4) * 40}>
+                  <a className="tool-row" href={t.href} target="_blank" rel="noopener noreferrer">
                     <span className="t-ic">{t.icon}</span>
-                    <div>
-                      <h3>{t.title}</h3>
-                      <p>{t.desc}</p>
-                    </div>
+                    <h3>{t.title}</h3>
+                    <p>{t.desc}</p>
                     <span className="t-arr" aria-hidden="true">
                       <IconArrow />
                     </span>
                   </a>
                 </Reveal>
               ))}
-              <Reveal delay={180}>
-                <div className="tool ghost">
+              <Reveal delay={160}>
+                <div className="tool-ghost">
                   <span className="ghost-plus">+</span>
                   <span className="ghost-t">More shipping soon</span>
                 </div>
@@ -495,13 +455,13 @@ export default function Home() {
         <section id="start" className="cta">
           <div className="bwrap">
             <Reveal>
-              <p className="cta-kick">{"// start here"}</p>
+              <p className="cta-kick">// get started</p>
               <h2 className="cta-t">
-                Ready to <span className="ol-g">Unlock</span>?
+                Grab the <span className="ol-g">tools</span>
               </h2>
               <p className="cta-s">
-                Grab the latest builds or ride with the community — thousands of repair shops
-                already did.
+                Thousands of repair shops already run BR Team builds daily. 
+                Grab the latest AiO or jump in on Telegram.
               </p>
               <div className="acts center">
                 <a
@@ -519,7 +479,8 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Join Telegram
+                  <IconTelegram />
+                  Telegram channel
                 </a>
               </div>
             </Reveal>
@@ -532,20 +493,20 @@ export default function Home() {
         <div className="bwrap">
           <div className="foot-top">
             <div className="foot-brand">
-              <LogoMark size={34} />
+              <LogoMark size={30} />
               <div>
                 <b>
                   BOOKRA<span className="g">1</span>N
                 </b>
                 <p>
-                  iOS &amp; FRP tooling built by the scene, for the scene. No clouds, no
-                  subscriptions — just tools that work.
+                  iOS &amp; FRP tools built by repair techs, for repair techs. 
+                  No clouds, no subscriptions — just tools that work.
                 </p>
               </div>
             </div>
             <div className="foot-cols">
               <div className="fcol">
-                <h4>Ecosystem</h4>
+                <h4>Tools</h4>
                 <a href="https://bookra1n.com/panel" target="_blank" rel="noopener noreferrer">
                   Web Panel
                 </a>
